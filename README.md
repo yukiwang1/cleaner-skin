@@ -1,5 +1,5 @@
 # Cleaner_Skin
-Cleaner Skin
+https://www.cleanerskin.io
 
 ## About Cleaner Skin
 
@@ -18,32 +18,32 @@ Website Features:
 Homepage where you can search by product name or by ingredients by copying and pasting the ingredients list of your product:
 <p align="center">
   <kbd>
-    <img src="cleanerskin/static/readme/home.png" alt="home" width="=600" height="447">
+    <img src="cleanerskin/static/readme/home.png" alt="home">
   </kbd>
 </p>
 
 About page explains the thresholds used to determine the risk levels of certain ingredients:
 <p align="center">
   <kbd>
-    <img src="cleanerskin/static/readme/about.png" alt="about" width="=600" height="447">
+    <img src="cleanerskin/static/readme/about.png" alt="about">
   </kbd>
 </p>
 Product page - shows whether there are any health risks in a specific product:
 <p align="center">
   <kbd>
-    <img src="cleanerskin/static/readme/product.png" alt="product" width="=600" height="447">
+    <img src="cleanerskin/static/readme/product.png" alt="product">
   </kbd>
 </p>
 Ingredients page - shows the results of an ingredients label search for a drugstore body lotion:
 <p align="center">
   <kbd>
-    <img src="cleanerskin/static/readme/ingredients.png" alt="ingredients" width="=600" height="447">
+    <img src="cleanerskin/static/readme/ingredients.png" alt="ingredients">
   </kbd>
 </p>
 Users with an account can also save products to their Favorites page for later:
 <p align="center">
   <kbd>
-    <img src="cleanerskin/static/readme/favorites.png" alt="favorites" width="=600" height="447">
+    <img src="cleanerskin/static/readme/favorites.png" alt="favorites">
   </kbd>
 </p>
 
