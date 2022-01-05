@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% if category == "Eye" %}
+<h2 class="mb-4">Eye Products</h2>
+{% elif category == "Cleanser" %}
+<h2 class="mb-4">Cleansers</h2>
+{% elif category == "Treatments" %}
+<h2 class="mb-4">Treatments</h2>
+{% elif category == "Suncare" %}
+<h2 class="mb-4">Sun Care</h2>
+{% elif category == "Moisturizer" %}
+<h2 class="mb-4">Moisturizers</h2>
+{% endif %}
+
+{% for product in products %}
+
+<div class="container-search">
+    <div class="row position-relative">
+        <div class="col-2">
+            <img class="img-thumbnail img-responsive" src="{{ product.image_file }}" alt="">
+        </div>
+        <div class="col-10">
+            <div><a href="{{ url_for('main.product', product_id=product.id) }}" class="stretched-link">{{
+                    product.brand
+                    }}</a></div>
+            <a href="{{ url_for('main.product', product_id=product.id) }}" class="stretched-link">{{
+                product.name
+                }}</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<div class="paginate">{{ pagination.links }}</div>
+{% endblock content %}

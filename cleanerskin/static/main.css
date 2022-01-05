@@ -1,0 +1,286 @@
+body {
+    background: white;
+    color: #333333;
+    margin-top: 5rem;
+    font-family: 'Outfit', sans-serif;
+  }
+  
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+p {
+  font-weight: 200;
+}
+
+a {
+  color: #444444;
+}
+
+.bg-steel {
+  background-color: #ffffff;
+}
+
+/* navbar page names */
+.site-header .navbar-nav .nav-link {
+  color: black;
+  font-family: 'Outfit', sans-serif;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: grey;
+  font-family: 'Outfit', sans-serif;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.site-header .navbar-brand {
+  font-family: 'Outfit', sans-serif;
+  color: black;
+  font-weight: 500;
+}
+.site-header .navbar-brand:hover {
+  color: grey;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+}
+
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: grey;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.form-control {
+  font-weight: 400;
+  color: grey;
+}
+
+.ingredient_field {
+  font-size: medium;
+  height: 200px;
+}
+
+.container-search {
+  background-color: white;
+}
+
+.container-search .row  {
+  padding-bottom: 10rem;
+  padding-top: 1rem;
+  transition: box-shadow 0.25s;
+  border-radius: 5px;
+  /* fix the height of each row */
+  height: 10rem; 
+  align-items: center; 
+}
+
+.container-search .row:hover  {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.container-search .row .col-2 {
+  height: 9rem;
+}
+
+.container-search img {
+  border: none;
+  object-fit: contain;
+  height: inherit;
+  margin: auto;
+  display: block;
+}
+
+.container-search a {
+  color: black;
+}
+
+.content-section img {
+  border: none;
+  object-fit: contain;
+  height: inherit;
+  margin: auto;
+  display: block;
+}
+
+.container .row .col-10:hover a {
+  color: grey;
+}
+
+.product-container .add-to-favorites {
+  font-size: small;
+}
+
+.product-container .row .col-3 {
+  height: 12rem;
+}
+
+.product-container img {
+  border: none;
+  object-fit: contain;
+  height: 90%;
+  margin: auto;
+  display: block;
+}
+.product-container a {
+  color: #444444;
+}
+
+.product-container .add-to-favorites {
+  font-size: small;
+}
+
+.product-container .row .col-9 .add-to-favorites:hover a {
+  font-size: small;
+  color: grey;
+}
+
+.product-container .row .col-9 .brand-name:hover a {
+  color: grey;
+}
+
+.contains-container {
+  font-weight: 200;
+  padding-top: 1.5rem;
+}
+
+.contains-container .btn {
+  background-color: #f2f2f2;
+  color: black;
+  border: none;
+}
+.contains-container .bad-ingredient {
+  padding-top: 1rem;
+}
+
+.product-container .row .contains-container p{
+  color: #575550;
+}
+.accordion {
+  font-weight: 200;
+}
+
+.home-footer a {
+  color: green;
+}
+
+.contains-container span:hover {
+  background-position: 0 11px;
+}
+
+.contains-container legend:hover:before {
+  transform: translateY(10px);
+} 
+
+.search-label {
+  text-align: center;
+}
+
+.form-control {
+  width: 100%;
+  margin: auto;
+  display: block;
+}
+.form-control:focus {
+  background-color: #fff;
+  border-color: rgb(100, 163, 100);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(108, 180, 108);
+}
+.content-section .container .form-control {
+  width: 70%;
+  margin: auto;
+  display: block;
+}
+
+.large-risk {
+  display:inline-block;
+  font-size: large;
+  margin-left: 10px;
+}
+.small-risk {
+  display:inline-block;
+  font-size: medium;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.list-group-item a {
+  text-decoration: none;
+}
+.list-group-item:hover a {
+  color: green;
+}
+
+.form-control-label {
+  margin-bottom: 10;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.page-link {
+  color: green;
+}
+.page-link a {
+  color: green;
+}
+.page-link:hover {
+  color: darkgreen;
+}
+.page-item.active .page-link {
+  background-color: green;
+  border-color: green;
+}

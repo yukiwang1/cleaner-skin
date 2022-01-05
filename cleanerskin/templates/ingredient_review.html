@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="product-container">
+
+    <div class="row">
+        <div class="col-2">
+            <img class="img-thumbnail img-responsive" src="/static/default_skincare_icon.png" alt="">
+        </div>
+        <div class="col-10">
+            <h3>Your Ingredient Analysis Results:</h3>
+            <p>{% for ingredient in ingredients %}
+                {% if loop.last %}
+                {{ ingredient }}
+                {% else %}
+                {{ ingredient }},
+                {% endif %}
+                {% endfor %}</p>
+            <p>Risk:
+                {% if risk == "None found" %}
+                <span class="large-risk badge bg-success">{{ risk }}</span>
+                {% elif risk == 'Low' %}
+                <span class="large-risk badge bg-success">{{ risk }}</span>
+                {% elif risk == 'Moderate' %}
+                <span class="large-risk badge bg-warning text-dark">{{ risk }}</span>
+                {% else %}
+                <span class="large-risk badge bg-danger">{{ risk }}</span>
+                {% endif %}
+            </p>
+
+        </div>
+        <div class="contains-container border-top">
+            <p></p>
+            <p>
+                {% if count == 1 %}
+                This product contains ingredients from 1 risky category:
+                {% else %}
+                This product contains ingredients from {{ count }} risky categories:
+                {% endif %}
+            </p>
+            {% for bad_ingredient in bad_ingredients %}
+            <legend>
+                <span>
+                    <strong><u>{{bad_ingredient.category}}</u></strong>
+                </span>
+                {% if bad_ingredient.risk_level == 'Low' %}
+                <span class="small-risk badge bg-success"> {{ bad_ingredient.risk_level }}</span>
+                {% elif bad_ingredient.risk_level == 'Moderate' %}
+                <span class="small-risk badge bg-warning text-dark"> {{ bad_ingredient.risk_level }}</span>
+                {% else %}
+                <span class="small-risk badge bg-danger"> {{ bad_ingredient.risk_level }}</span>
+                {% endif %}
+
+            </legend>
+            <p> <strong>In this product:</strong>
+                {% for item in bad_ingredients[bad_ingredient] %}
+                {% if loop.last %}
+                {{ item }}
+                {% else %}
+                {{ item }},
+                {% endif %}
+                {% endfor %}
+            </p>
+            <p><strong>Uses: </strong>{{ bad_ingredient.uses }}</p>
+            <p><strong>Risks: </strong>{{ bad_ingredient.reason }}</p>
+            {% endfor %}
+        </div>
+        {% if count %}
+        <div class="accordion accordion-flush mb-4" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        References
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        {% for bad_ingredient in bad_ingredients %}
+                        <p>{{ bad_ingredient.resources }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock content %}

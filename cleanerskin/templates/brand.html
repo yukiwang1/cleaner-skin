@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="mb-4">{{brand}}</h2>
+{% for product in products %}
+<div class="container-search container-fluid">
+    <div class="row position-relative">
+        <div class="col-2">
+            <img class="img-thumbnail img-fluid img-responsive" src="{{ product.image_file }}" alt="">
+        </div>
+        <div class="col-10">
+            <div><a href="{{ url_for('main.product', product_id=product.id) }}" class="stretched-link">{{
+                    product.brand
+                    }}</a></div>
+            <a href="{{ url_for('main.product', product_id=product.id) }}" class="stretched-link">{{
+                product.name
+                }}</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<div class="paginate">{{ pagination.links }}</div>
+{% endblock content %}

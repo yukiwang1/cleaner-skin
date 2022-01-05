@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>About Cleaner Skin</h1>
+<br>
+<div class="row">
+
+    <div class="col-8">
+
+        <p>
+            Cleaner Skin is a quick and easy tool that analyzes the contents of
+            skincare products for ingredients that may have potentially harmful effects. This tool was created to help
+            consumers
+            become more aware about the ingredients in their everyday skincare products.
+        </p><br>
+    </div>
+    <div class="col-4">
+
+        <img class="justify-self-center" src=" /static/skincare_about_icon.png" width="150px" height="150px">
+    </div>
+</div>
+
+<h2 class="mb-3">How Ingredients are Rated</h2>
+<p><i>Here are the thresholds used to determine the risk level of ingredients:</i> </p>
+<div class="row">
+    <div class="col-sm-3 col-lg-2">
+        <span class="small-risk badge bg-success">Low</span>
+    </div>
+    <div class=" col-sm-9 col-lg-10">
+        <p>May cause skin irritation in certain
+            individuals.</p>
+    </div>
+</div>
+<div class="row">
+    <div class=" col-sm-3 col-lg-2">
+        <span class="small-risk badge bg-warning">Moderate</span>
+    </div>
+    <div class=" col-sm-9 col-lg-10">
+        <p>Risk of contaminants with toxic chemicals are carcinogens or have other adverse effects.</p>
+    </div>
+</div>
+<div class="row">
+    <div class=" col-sm-3 col-lg-2">
+        <span class="small-risk badge bg-danger">High</span>
+    </div>
+    <div class=" col-sm-9 col-lg-10">
+        <p>Contains ingredients that are known carcinogens or known to release carcinogens.</p>
+    </div>
+</div>
+<div><br><br>
+    <p><i>
+            Disclaimer: Results of this tool are meant to raise awareness and does not represent an exhaustive list of
+            all potential
+            health
+            risks. For specific questions about health
+            risks, please consult your dermatologist.</i></p>
+</div><br>
+{% endblock content %}

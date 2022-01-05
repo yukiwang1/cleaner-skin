@@ -37,6 +37,7 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
@@ -105,6 +106,7 @@ celerybeat.pid
 .env
 .venv
 env/
+env1/
 venv/
 ENV/
 env.bak/
@@ -127,3 +129,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# other
+seed.py
+products.json
+.zprofile
+site.db

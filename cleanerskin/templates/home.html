@@ -1,0 +1,61 @@
+{% extends "layout_home.html" %}
+{% block content %}
+
+<div class="content-section align-items-center justify-content d-flex-fill">
+
+    <h4 class="text-center text-secondary mb-4"> <img class="mb-4" src=" /static/account_icon.png" width="100px"
+            height="100px"><br>
+        Cleaner Skin
+        analyzes skincare product ingredients for health risks</h4>
+
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+
+        <div class="container search-label align-items-center">
+            <div>{{ form.content.label(class="form-control-label") }}</div>
+
+            <div class="form-group">
+                {% if form.content.errors %}
+                {{ form.content(class="product_field form-control form-control-lg mt-3 mb-3 is-invalid") }}
+
+                <h3 class="mt-4 mb-4">Or</h3>
+
+                <div>{{ form.ingredient_content.label(class="form-control-label") }}</div>
+
+                {{ form.ingredient_content(class="ingredient_field form-control form-control-lg mt-3 mb-3 is-invalid")
+                }}
+                <div class="invalid-feedback">
+                    {% for error in form.content.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <!-- search bar: -->
+                {{ form.content(class="form-control form-control-lg mt-3 mb-3") }}
+
+                <h3 class="mt-4 mb-4">Or</h3>
+
+                <div>{{ form.ingredient_content.label(class="form-control-label") }}</div>
+
+                {{ form.ingredient_content(class="ingredient_field form-control form-control-lg mt-3 mb-3") }}
+                {% endif %}
+            </div>
+
+            <div class="container form-group align-items-center">
+                {{ form.submit(class="btn btn-success") }}
+
+            </div>
+        </div>
+
+
+
+    </form>
+</div>
+<div class="home-footer border-top pt-3">
+    <small class="text-muted">
+        <a href="{{ url_for('users.register') }}">Sign up</a> to save your favorite products
+        <div class="pt-2">&copy; 2022 Cleaner Skin</div>
+    </small>
+</div>
+
+{% endblock content %}
