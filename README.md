@@ -11,7 +11,7 @@ Website Features:
 * Risk ratings, ingredients, and information about risky ingredients for thousands of products 
 * Search for a product or by ingredients to assess potential health risks
 * Register and log in to save products to favorites
-* View all products by category (i.e. Cleaner, Moisturizer, Sun Care, etc)
+* View all products by a specific brand or category (i.e. Cleaner, Moisturizer, Sun Care, etc)
 
 # Screenshots
 
