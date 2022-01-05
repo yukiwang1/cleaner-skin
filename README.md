@@ -50,6 +50,8 @@ Users with an account can also save products to their Favorites page for later:
 # Technical
 
 Design:
+* Model-view-controller design
+* RESTful server side architecture
 
 Frontend:
 * HTML with Jinja2
