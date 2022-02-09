@@ -8,53 +8,32 @@ def search(query):
     results = []
     product_results = []
     brand_results = []
-    search_phrase = ""
     search_query = query.split(" ")
+
     for i in range(len(search_query)):
         keyword = search_query[i].strip()
         search_query[i] = keyword
 
     for keyword in search_query:
-        # search brand names first
-        dbQuery = db.engine.execute(
-            "select * from Product where brand ilike %s", ("%" + keyword + "%")
-        )
-        brand_results = dbQuery.all()
+        # Find Products with matching brand names first
+        brand_results = Product.brand.ilike("%" + keyword + "%").all()
 
         if brand_results:
-            # if brand found, check brand + product name
-            for result in brand_results:
+            # If brand found, move "better" matches first (i.e. brand + product name matches combined)
+            for product in brand_results:
+                product_name = product.name.lower()
                 for keyword in search_query:
-                    product_name = result[3].lower()
                     if keyword in product_name:
-                        results.append(result)
+                        results.append(product)
+                        brand_results.remove(product)
                         break
+            results.extend(brand_results)
+            return results
 
-            # if product name is found, append remaining brand results
-            if results:
-                for item in brand_results:
-                    if item not in results:
-                        results.append(item)
-                return results
-            elif not results:
-                # append product_name results
-                dbQuery = db.engine.execute(
-                    "select * from Product where name ilike %s", ("%" + keyword + "%")
-                )
-                product_results = dbQuery.all()
-                for product in product_results:
-                    brand_results.append(product)
-                return brand_results
-
-        # if no brand found, search product names
+        # If no matching brand found, try searching by product name
         else:
-            dbQuery = db.engine.execute(
-                "select * from Product where name ilike %s", ("%" + keyword + "%")
-            )
-            product_results = dbQuery.all()
-            if product_results:
-                results = product_results
-                break
+            product_results = Product.name.ilike("%" + keyword + "%").all()
+            results.extend(product_results)
 
     return results
 
@@ -72,7 +51,7 @@ def query_user_or_product(_type, identifier):
     )
 
 
-# gets string and returns ingredients in array
+# Gets string and returns ingredients in array
 def get_ingredients(ingredient_string):
     ingredients = ingredient_string.split(", ")
     for i in range(len(ingredients)):
@@ -81,67 +60,64 @@ def get_ingredients(ingredient_string):
     return ingredients
 
 
-# returns list of bad ingredients, if any
+# Returns dict of bad ingredients, if any
 def review_product(ingredients):
     results = defaultdict(list)
     for ingredient in ingredients:
+        full_ingredient_match_category = []
+
         if len(ingredient) < 3:
             continue
 
-        # check false positives
-        false_positives = SafeIngredients.query.filter(
-            SafeIngredients.names.ilike("%" + ingredient + "%")
-        ).all()
-        if false_positives:
-            false_positives = []
+        if has_false_positives(ingredient):
             continue
 
-        # check entire phrase
-        result = BadIngredients.query.filter(
+        # Check entire phrase
+        full_ingredient_match_category = BadIngredients.query.filter(
             BadIngredients.names.ilike("%" + ingredient + "%")
         ).all()
 
-        if result:
-            if results[result[0]] == "":
-                results[result[0]] = ingredient
-            else:
-                results[result[0]].append(ingredient)
-            result = []
+        if full_ingredient_match_category:
+            results[full_ingredient_match_category[0]].append(ingredient)
             continue
 
         ingredient_keywords = re.split("/|-| ", ingredient.lower())
 
         for keyword in ingredient_keywords:
-            keyword = keyword.replace("(", "")
-            keyword = keyword.replace(")", "")
-            keyword = keyword.replace("*", "")
-            keyword = keyword.replace("+", "")
+            ingredient_keyword_match_category = []
+
+            keyword = (
+                keyword.replace("(", "")
+                .replace(")", "")
+                .replace("*", "")
+                .replace("+", "")
+            )
             keyword = re.sub("\d", "", keyword)
 
             if len(keyword) < 3:
                 continue
 
-            # check false positives
-            false_positives = SafeIngredients.query.filter(
-                SafeIngredients.names.ilike("%" + keyword + "%")
-            ).all()
-            if false_positives:
-                false_positives = []
-                break
+            if has_false_positives(keyword):
+                continue
 
-            result = BadIngredients.query.filter(
+            ingredient_keyword_match_category = BadIngredients.query.filter(
                 BadIngredients.names.ilike("%" + keyword + "%")
             ).all()
 
-            if result:
-                if results[result[0]] == "":
-                    results[result[0]] = ingredient
-                else:
-                    results[result[0]].append(ingredient)
-                result = []
+            if ingredient_keyword_match_category:
+                results[ingredient_keyword_match_category[0]].append(ingredient)
                 break
 
     return results
+
+
+# Returns true if there are false positives
+def has_false_positives(keyword):
+    false_positives = SafeIngredients.query.filter(
+        SafeIngredients.names.ilike("%" + keyword + "%")
+    ).all()
+
+    return len(false_positives) > 0
 
 
 def get_risk(bad_ingredients):

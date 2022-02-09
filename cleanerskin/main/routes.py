@@ -34,6 +34,7 @@ def home():
     return render_template("home.html", form=form)
 
 
+# Pagination
 def get_results(offset=0, per_page=10, results=[]):
     return results[offset : offset + per_page]
 
