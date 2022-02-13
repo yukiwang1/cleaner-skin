@@ -182,10 +182,7 @@ def favorites(user_id):
 
 @main.route("/brand/<brand>")
 def brand(brand):
-    dbQuery = db.engine.execute(
-        "select * from Product where brand ilike %s", ("%" + brand + "%")
-    )
-    products = dbQuery.all()
+    products = Product.query.filter(Product.brand.ilike("%" + brand + "%"))
 
     page, per_page, offset = get_page_args(
         page_parameter="page", per_page_parameter="per_page"
@@ -207,10 +204,7 @@ def brand(brand):
 
 @main.route("/category/<category>")
 def category(category):
-    dbQuery = db.engine.execute(
-        "select * from Product where category ilike %s", ("%" + category + "%")
-    )
-    products = dbQuery.all()
+    products = Product.query.filter(Product.category.ilike("%" + category + "%"))
 
     page, per_page, offset = get_page_args(
         page_parameter="page", per_page_parameter="per_page"
